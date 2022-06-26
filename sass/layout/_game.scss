@@ -1,0 +1,17 @@
+.game {
+    border: 1px solid blue;
+    height: 95%;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    grid-column-gap: 15px;
+    grid-row-gap: 15px;
+
+    &__columns {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+}

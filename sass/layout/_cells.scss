@@ -1,0 +1,14 @@
+.cells {
+    width: 100%;
+    border: solid 1px blue;
+    border-radius: 180px;
+    height: 5%;
+
+    &--yellow {
+        background-color: yellow;
+    }
+
+    &--red {
+        background-color: red;
+    }
+}

@@ -1,0 +1,22 @@
+.pawns {
+    border-radius: 180px;
+    width: 25px;
+    height: 25px;
+
+    &--yellow {
+        background-color: yellow;
+    }
+
+    &--red {
+        background-color: red;
+    }
+
+    &--visible {
+        visibility: hidden;
+    }
+
+    &:hover {
+        cursor: pointer;
+        visibility: visible;
+    }
+}
