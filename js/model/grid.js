@@ -1,12 +1,16 @@
 export const grid = [
     {
+        column: 0,
+        colors: [],
+    },
+    {
         column: 1,
         colors: [],
+
     },
     {
         column: 2,
         colors: [],
-
     },
     {
         column: 3,
@@ -22,10 +26,6 @@ export const grid = [
     },
     {
         column: 6,
-        colors: [],
-    },
-    {
-        column: 7,
         colors: [],
     }
 ]

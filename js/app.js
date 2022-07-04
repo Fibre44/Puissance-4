@@ -1,5 +1,6 @@
 import { grid } from './model/grid.js';
-import { getLocalStorage, setLocalStorage } from './localstorage.js'
+import { controleBottom, controleRow, controleCross } from './gameplay.js';
+import { setLocalStorage } from './localstorage.js'
 let playerActif = 'yellow'
 
 const pawns = document.getElementsByClassName('pawns')
@@ -8,16 +9,22 @@ const start = function () {
     setLocalStorage(grid)
 }
 start()
-
+//mise en place des listenners
 for (let i = 0; i < pawns.length; i++) {
-    pawns[i].addEventListener('click', function () {
+    pawns[i].addEventListener('click', async function () {
         const column = this.getAttribute('data-id').split('-')
         updateGrid(column[1], playerActif)
+        const colum = await controleBottom(column[1], playerActif)
+        const row = await controleRow(column[1], playerActif)
+        const cross = await controleCross(column[1], playerActif)
         changePlayer(playerActif)
         if (playerActif === 'yellow') {
             playerActif = 'red'
         } else {
             playerActif = 'yellow'
+        }
+        if (colum == true || cross == true || row == true) {
+            console.log('puissance 4')
         }
     })
 }
@@ -35,7 +42,6 @@ const changePlayer = function (color) {
     }
 
 }
-
 /**
  * 
  * @param {integer} column numéro de la colonne la colonne de gauche est réprennté par 1 la colonne de droite par 7 
@@ -43,15 +49,12 @@ const changePlayer = function (color) {
  */
 
 const updateGrid = function (column, color) {
-    const gridLocal = getLocalStorage()
-    let columnInt = parseInt(column)
-    columnInt -= 1
     //Selection dans l'objet de la colonne à mettre à jour
     const columnActive = grid.find(e => e.column == column)
     const cellUpdate = columnActive.colors.length
     columnActive.colors.push(color)
     setLocalStorage(grid)
-    updateDom(columnInt, cellUpdate, color)
+    updateDom(column, cellUpdate, color)
 
 }
 
